@@ -10,7 +10,8 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class UserData {
-    private UserData(){/*no use*/}
+    private UserData() {/*no use*/}
+
     private static final List<User> users = new ArrayList<>();
     private static final Lock lock = new ReentrantLock();
 
@@ -43,10 +44,15 @@ public class UserData {
 
     public static boolean authenticate(User user) {
         lock.lock();
-        Boolean userMatch = users.stream().anyMatch(x -> x.equals(user));
+        if (!user.getUsername().isBlank() && !user.getPassword().isBlank()) {
+            boolean userMatch = users.stream().anyMatch(x -> x.equals(user));
+            lock.unlock();
+            return userMatch;
+        }
         lock.unlock();
-        return userMatch;
+        return false;
     }
+
     public static Collection<User> getAll() {
         return Collections.unmodifiableCollection(users);
     }
