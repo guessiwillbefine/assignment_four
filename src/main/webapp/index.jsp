@@ -15,7 +15,6 @@
         <h2>KEY ENDPOINTS:</h2><br>
         <h4><a href="/auth/registration">(POST) localhost:8080/auth/registration</a></h4> - show registration page
         <h4><a href="/auth">(GET) localhost:8080/auth</a></h4> - show login page
-        <h4><a href="/main">(GET) localhost:8080/main</a></h4> - show main page
-        <h4><a href="/main/logout">(GET) localhost:8080/main/logout</a></h4> - logout
+        <h4><a href="/main">(GET) localhost:8080/main</a></h4> - main page (for authenticated only)
     </body>
 </html>

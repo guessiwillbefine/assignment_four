@@ -9,9 +9,10 @@
 При виборі "Logout" користувач потрапляє на сторінку входу і повинен вводити логін-пароль заново."
 
 ### Endpoints:
-(GET)  http://localhost:8080/auth - get login page
-(GET)  http://localhost:8080/auth/login - login
+(GET)  http://localhost:8080/auth              - get login page
+(GET)  http://localhost:8080/auth/login        - login
 (POST) http://localhost:8080/auth/registration - get registration page
 (POST) http://localhost:8080/auth/registration - registration
-(GET)  http://localhost:8080/main - main page, access only if authenticated
-(POST) http://localhost:8080/main/logout - logout method (clears users cookie)
+(GET)  http://localhost:8080/main              - main page, access only if authenticated
+(GET)  http://localhost:8080/main/users        - users list (authenticated only) 
+(POST) http://localhost:8080/main/logout       - logout method (clears users cookie)
