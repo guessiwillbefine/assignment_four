@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ua.vadim.dao.UserData;
 import ua.vadim.model.User;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,7 +21,8 @@ public class AuthController {
      */
     @GetMapping
     public ModelAndView authPage() {
-        return new ModelAndView("auth", "user",new User());
+        return new ModelAndView("auth","user",new User())
+                .addObject( "invalid", "false");
     }
 
     /**
@@ -36,8 +38,8 @@ public class AuthController {
             response.setContentType("text/plain");
             return new ModelAndView("main", "users", UserData.getAll());
         }
-        System.err.println("error");
-        return new ModelAndView("auth", "user",new User());
+        return new ModelAndView("auth",  "user",new User())
+                .addObject( "invalid", "true");
     }
 
     /**
@@ -45,23 +47,25 @@ public class AuthController {
      */
     @GetMapping("/registration")
     public ModelAndView registrationPage() {
-        return new ModelAndView("registration", "user", new User());
+        return new ModelAndView("registration", "user", new User())
+                .addObject( "invalid", "false");
     }
 
     /**
      * mapping to let the user try to register
      */
     @PostMapping("/registration")
-    public String register(@ModelAttribute("user") User user, HttpServletResponse response) {
-        System.out.println(user);
+    public ModelAndView register(@ModelAttribute("user") User user, HttpServletResponse response) {
         if (UserData.register(user)) {
             Cookie cookie = new Cookie("auth", "true");
             cookie.setPath("/");
             cookie.setMaxAge(86400);
             response.addCookie(cookie);
             response.setContentType("text/plain");
-            return "redirect:/main";
+            return new ModelAndView("redirect:/main");
         }
-        return "redirect:/auth/registration";
+        System.err.println("ne regnulo");
+        return new ModelAndView("registration", "user", new User())
+                .addObject( "invalid", "true");
     }
 }

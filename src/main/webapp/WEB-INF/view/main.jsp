@@ -1,13 +1,14 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page isELIgnored="false" %>
-<!DOCTYPE html>
 <html>
+    <head>
+        <title>main page</title>
+    </head>
     <body>
-        <c:forEach items="${users}" var="user">
-            <div>${user.username}, ${user.name} ${user.surname}</div>
-        </c:forEach><br/>
-        <hr>
-        <a href="${pageContext.request.contextPath}/main/logout">logout</a>
+        <h3>
+            <a href="/main/users">get users list</a>
+        </h3><br>
+        <h3>
+            <a href="/main/logout"> logout</a>
+        </h3>
     </body>
 </html>

@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
     <body>
@@ -13,6 +14,9 @@
             <br>
             <input type="submit" value="login">
         </form:form>
+        <c:if test="${invalid eq \"true\"}">
+            <div>invalid data</div>
+        </c:if>
         <br>
     <a href="/auth/registration">registration</a>
     </body>

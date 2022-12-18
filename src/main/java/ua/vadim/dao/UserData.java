@@ -25,6 +25,7 @@ public class UserData {
     }
 
     public static boolean register(User user) {
+        if (user.getPassword().isBlank() || user.getUsername().isBlank()) return false;
         lock.lock();
         boolean present = isPresent(user);
         System.err.println(present);
